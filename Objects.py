@@ -1,4 +1,5 @@
 import pygame
+from Particles import *
 
 
 class Object(pygame.sprite.Sprite):

@@ -6,6 +6,7 @@ class Weapon(pygame.sprite.Sprite):
     def __init__(self, direction, group, player, weapon_name):
         super().__init__(group)
         self.image = pygame.Surface((40, 40))
+        self.mask = pygame.mask.from_surface(self.image)
         self.player = player
         self.direction = direction
         self.weapon_name = weapon_name

@@ -86,7 +86,7 @@ class Level():
             last_hp = self.player.health
             last_score = self.player.exp
 
-            self.player.walk_sound.stop()
+            self.player.sounds[self.player.sound_index].stop()
 
             self.all_visible_sprites = Camera('data/level_graphics/lvl2_map.png',
                                               'data/level_graphics/lvl2_map_above.png')
@@ -100,6 +100,7 @@ class Level():
 
             self.player.health = last_hp
             self.player.exp = last_score
+            self.player.sound_index = 1
 
             self.hud = HUD(self.player)
 
@@ -116,7 +117,10 @@ class Level():
 
     def check_player_death(self):
         if self.player.alive is False:
+            self.player.sounds[self.player.sound_index].stop()
             self.end_game = True
+            self.player.end_game = True
+            self.player.sound_playing = False
             self.dungeon_theme.stop()
             self.main_theme.stop()
             self.dead_theme.play()
@@ -187,9 +191,17 @@ class Camera(pygame.sprite.Group):
                                        self.ground_front_rect.topleft[1] - self.compensation[1])
 
         self.surface.blit(self.ground_surface, self.ground_rect_pos)
+        if not self.shadows:
+            for sprite in sorted(self.sprites(), key=lambda x: x.rect.centery):
+                new_pos = (sprite.rect.x - self.compensation[0], sprite.rect.y - self.compensation[1])
+                if sprite.sprite_type == 'particle':
+                    self.surface.blit(sprite.image, new_pos)
+                    sprite.kill()
 
         for sprite in sorted(self.sprites(), key=lambda x: x.rect.centery):
             new_pos = (sprite.rect.x - self.compensation[0], sprite.rect.y - self.compensation[1])
+            if sprite.sprite_type == 'particle':
+                continue
             self.surface.blit(sprite.image, new_pos)
 
             # shadows
@@ -223,6 +235,7 @@ class Camera(pygame.sprite.Group):
         shadow_coords = []
         if sprite.sprite_type == 'player':
             sun_angle = atan2((sun_pos.y - target_pos.y), (sun_pos.x - target_pos.x))
+            sun_angle = -0.4
             for x, y in mask:
                 shadow_height = (18 - y) * 1.4
                 shadow_width = shadow_height * tan(sun_angle)

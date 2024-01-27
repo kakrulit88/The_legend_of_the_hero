@@ -127,4 +127,5 @@ class Menu():
                         pygame.quit()
                         sys.exit()
                     if event.type == pygame.KEYDOWN:
-                        return
+                        pygame.quit()
+                        sys.exit()

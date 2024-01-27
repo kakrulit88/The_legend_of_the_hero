@@ -6,19 +6,28 @@ class Entity(pygame.sprite.Sprite):
     def __init__(self, groups):
         super().__init__(groups)
         self.direction = [0, 0]
+        self.end_game = False
 
-        # sound
-        self.walk_sound = pygame.mixer.Sound('data/Sounds/Game/walk_on_grass.mp3')
-        self.walk_sound.set_volume(0.7)
+        # sounds
+        self.sounds = []
+
+        self.walk_sound_grass = pygame.mixer.Sound('data/Sounds/Game/walk_on_grass.mp3')
+        self.walk_sound_grass.set_volume(0.7)
+        self.walk_sound_stone = pygame.mixer.Sound('data/Sounds/Game/walk_on_stone3.mp3')
+        self.walk_sound_stone.set_volume(0.3)
+
+        self.sounds = [self.walk_sound_grass, self.walk_sound_stone]
+        self.sound_index = 0
         self.sound_playing = True
 
+
     def move(self, speed):
-        if (self.direction[0] != 0 or self.direction[1] != 0) and self.sprite_type == 'player':
+        if (self.direction[0] != 0 or self.direction[1] != 0) and not self.end_game and self.sprite_type == 'player':
             if self.sound_playing:
-                self.walk_sound.play(loops=-1)
+                self.sounds[self.sound_index].play(loops=-1)
                 self.sound_playing = False
         else:
-            self.walk_sound.stop()
+            self.sounds[self.sound_index].stop()
             self.sound_playing = True
         self.hitbox.x += self.direction[0] * speed
         self.colusion(self.direction, 'x')
@@ -46,7 +55,7 @@ class Entity(pygame.sprite.Sprite):
                         self.hitbox.top = sprite.hitbox.bottom
 
     def hit_animation(self):
-        znach = sin(pygame.time.get_ticks())
-        if znach >= 0:
+        value = sin(pygame.time.get_ticks())
+        if value >= 0:
             return 255
         return 0

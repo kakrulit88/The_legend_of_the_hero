@@ -96,9 +96,14 @@ class Enemy(Entity):
 
     def animate(self):
         self.frame_time += self.animation_speed
-
         if self.frame_time >= len(monsters[self.monster_name]['idle']):
             self.frame_time = 0
+
+        # shadows
+        if self.monster_name == 'slime' or self.monster_name == 'GiantSpirit':
+            pass
+        else:
+            self.particles.create_shadow_particles([self.all_visible_sprites], (self.rect.midbottom[0], self.rect.midbottom[1] - 5))
 
         self.image = pygame.image.load(monsters[self.monster_name]['idle'][int(self.frame_time)]).convert_alpha()
         self.mask = pygame.mask.from_surface(self.image).outline()
