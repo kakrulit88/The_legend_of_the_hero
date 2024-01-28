@@ -194,13 +194,13 @@ class Camera(pygame.sprite.Group):
         if not self.shadows:
             for sprite in sorted(self.sprites(), key=lambda x: x.rect.centery):
                 new_pos = (sprite.rect.x - self.compensation[0], sprite.rect.y - self.compensation[1])
-                if sprite.sprite_type == 'particle':
+                if sprite.sprite_type == 'particle' and sprite.particle_type == 'static':
                     self.surface.blit(sprite.image, new_pos)
                     sprite.kill()
 
         for sprite in sorted(self.sprites(), key=lambda x: x.rect.centery):
             new_pos = (sprite.rect.x - self.compensation[0], sprite.rect.y - self.compensation[1])
-            if sprite.sprite_type == 'particle':
+            if sprite.sprite_type == 'particle' and sprite.particle_type == 'static':
                 continue
             self.surface.blit(sprite.image, new_pos)
 

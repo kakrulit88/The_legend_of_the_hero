@@ -109,7 +109,8 @@ class Player(Entity):
         if self.frame_time > len(self.animation_direction):
             self.frame_time = 0
         # shadow
-        self.particles.create_shadow_particles([self.all_visible_sprites] , (self.rect.midbottom[0], self.rect.midbottom[1] - 5))
+        self.particles.create_shadow_particles([self.all_visible_sprites],
+                                               (self.rect.midbottom[0], self.rect.midbottom[1] - 5))
         # move animation
         if not self.attacking:
             if self.animation_direction != player_animation['down_idle']:
@@ -153,15 +154,11 @@ class Player(Entity):
                     self.weapon.kill()
                     self.weapon = None
 
-
     def timer(self):
         current_time = pygame.time.get_ticks()
         if self.istimer and not self.attacking:
             if current_time - self.timer_start >= self.delay:
                 self.istimer = False
-
-
-
 
     def attacked_cooldown(self):
         current_time = pygame.time.get_ticks()

@@ -34,7 +34,6 @@ class Particles_settings():
         Particle(group, pos, shadow_particles, 'static')
 
 
-
 class Particle(pygame.sprite.Sprite):
     def __init__(self, group, pos, animations, particle_type):
         super().__init__(group)

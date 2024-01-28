@@ -20,7 +20,6 @@ class Entity(pygame.sprite.Sprite):
         self.sound_index = 0
         self.sound_playing = True
 
-
     def move(self, speed):
         if (self.direction[0] != 0 or self.direction[1] != 0) and not self.end_game and self.sprite_type == 'player':
             if self.sound_playing:
