@@ -13,7 +13,7 @@ class Entity(pygame.sprite.Sprite):
 
         self.walk_sound_grass = pygame.mixer.Sound('data/Sounds/Game/walk_on_grass.mp3')
         self.walk_sound_grass.set_volume(0.7)
-        self.walk_sound_stone = pygame.mixer.Sound('data/Sounds/Game/walk_on_stone3.mp3')
+        self.walk_sound_stone = pygame.mixer.Sound('data/Sounds/Game/walk_on_grass.mp3')
         self.walk_sound_stone.set_volume(0.3)
 
         self.sounds = [self.walk_sound_grass, self.walk_sound_stone]

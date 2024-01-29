@@ -26,16 +26,7 @@ pict_items = {
               'data/grass/grass_5.png',
               'data/grass/grass_6.png',
               'data/grass/grass_7.png',
-              'data/grass/grass_8.png',
-              'data/grass/grass_9.png',
-              'data/grass/grass_10.png',
-              'data/grass/grass_11.png',
-              'data/grass/grass_13.png',
-              'data/grass/grass_14.png',
-              'data/grass/grass_15.png',
-              'data/grass/grass_16.png',
-              'data/grass/grass_17.png',
-
+              'data/grass/grass_8.png'
               ]
 
 }
