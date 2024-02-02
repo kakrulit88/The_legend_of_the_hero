@@ -5,15 +5,12 @@ SIZE = HEIGHT, WIDTH = 1280, 720
 FPS = 60
 font = 'data/Fonts/Font1.ttf'
 font_size = 30
-health_bar_width, energy_bar_width = 20, 20
-health_bar_height, energy_bar_height = 200, 150
 
 
-def import_csv(link):
-    with open(link, encoding='utf-8') as file:
+def import_csv(path):
+    with open(path, encoding='utf-8') as file:
         spisok = csv.reader(file, delimiter=',')
-        spisok = [i for i in spisok]
-        return spisok
+        return [i for i in spisok]
 
 
 player_stats = {'health': 100, 'speed': 4, 'energy': 75, 'exp': 0}
@@ -35,9 +32,7 @@ pict_items = {
               'data/grass/grass_15.png',
               'data/grass/grass_16.png',
               'data/grass/grass_17.png',
-
               ]
-
 }
 
 slovar_layouts_level1 = {

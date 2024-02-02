@@ -9,6 +9,8 @@ class Weapon(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.player = player
         self.direction = direction
+
+        # stats
         self.weapon_name = weapon_name
         self.damage = weapons[self.weapon_name]['damage']
 

@@ -20,7 +20,7 @@ class Menu():
         # settings
         self.rect1_len = 0
         self.rect2_len = 1280
-        self.text_sdvig = 200
+        self.text_offset = 200
         self.player = player
 
     def main_menu(self):
@@ -111,13 +111,13 @@ class Menu():
             for index in range(len(itog_text)):
                 if index == 6:
                     text = self.font.render(f'{itog_text[index]} {exp}', True, 'white')
-                    text_rect = text.get_rect(center=(HEIGHT // 2, self.text_sdvig))
-                    self.text_sdvig += 50
+                    text_rect = text.get_rect(center=(HEIGHT // 2, self.text_offset))
+                    self.text_offset += 50
                     self.screen.blit(text, text_rect)
                 else:
                     text = self.font.render(itog_text[index], True, 'white')
-                    text_rect = text.get_rect(center=(HEIGHT // 2, self.text_sdvig))
-                    self.text_sdvig += 50
+                    text_rect = text.get_rect(center=(HEIGHT // 2, self.text_offset))
+                    self.text_offset += 50
                     self.screen.blit(text, text_rect)
                 pygame.display.update()
 

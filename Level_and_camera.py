@@ -128,26 +128,29 @@ class Level():
     def run(self):
         self.check_new_level()
         self.check_game_end()
+
         if not self.is_dialog:
-            if not self.end_game:
+            if self.end_game:
+                if self.player.health <= 0:
+                    self.itog_text = dead_text
+                else:
+                    self.itog_text = end_text
+
+                for sprite in self.attackable_sprites:
+                    if sprite.sprite_type == 'enemy':
+                        sprite.kill()
+
+                self.all_visible_sprites.camera_offset(self.player)
+                self.all_visible_sprites.update()
+                self.hud.update()
+                self.menu.transition2(self.itog_text, self.player.exp)
+
+            else:
                 self.check_player_death()
                 self.all_visible_sprites.camera_offset(self.player)
                 self.all_visible_sprites.update_enemy(self.player)
                 self.all_visible_sprites.update()
                 self.hud.update()
-            if self.end_game and self.player.health <= 0:
-                self.itog_text = dead_text
-            elif self.end_game and self.player.health > 0:
-                self.itog_text = end_text
-            if self.end_game:
-                for sprite in self.attackable_sprites:
-                    if sprite.sprite_type == 'enemy':
-                        sprite.kill()
-                self.all_visible_sprites.camera_offset(self.player)
-                self.all_visible_sprites.update()
-                self.hud.update()
-
-                self.menu.transition2(self.itog_text, self.player.exp)
 
         else:
             self.player.dialog = True

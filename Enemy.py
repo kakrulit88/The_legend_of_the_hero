@@ -17,11 +17,6 @@ class Enemy(Entity):
         self.mask = pygame.mask.from_surface(self.image)
         self.hitbox = self.rect.inflate(-20, -20)
 
-        self.obstical_sprites = obstical_sprites
-        self.all_visible_sprites = all_visible_sprites
-
-        self.player = None
-
         # stats
         self.health = monsters[self.monster_name]['health']
         self.damage = monsters[self.monster_name]['damage']
@@ -65,6 +60,12 @@ class Enemy(Entity):
         self.hited_sound.set_volume(0.08)
         self.walk_sound_grass = pygame.mixer.Sound('data/Sounds/Game/walk_on_grass.mp3')
         self.walk_sound_grass.set_volume(0.7)
+
+        # other
+        self.obstical_sprites = obstical_sprites
+        self.all_visible_sprites = all_visible_sprites
+
+        self.player = None
 
         self.end_game = False
 

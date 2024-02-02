@@ -9,7 +9,7 @@ class Game():
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode(SIZE)
-        pygame.display.set_caption('game')
+        pygame.display.set_caption('The legend of the hero')
         self.clock = pygame.time.Clock()
 
         self.level = Level()
